@@ -25,16 +25,19 @@ namespace SeverinosAPI.Controllers
         }
 
         // GET login/Login/5
-        [HttpGet("{usuario}/{senha}")]
+        [HttpGet("{email}/{senha}")]
         public ActionResult<string> Get(String email, String senha)
         {
             DBModel.GetConexao();
 
-            var pessoa = DBModel.GetReader($"select seqpessoa, indseverino from tb_pessoa where email = '{email}' and senha = '{senha}'");
+            string SelectPessoa = 
+                $"select indseverino from tb_pessoa where upper(email) = '{email.ToUpper()}' " +
+                $"and upper(senha) = '{senha.ToUpper()}'";
 
+            var pessoa = DBModel.GetReader(SelectPessoa);
             pessoa.Read();
 
-            if (!string.IsNullOrEmpty(pessoa["seqpessoa"].ToString()))
+            if (pessoa.HasRows)
             {
                 return Convert.ToBoolean(pessoa["indseverino"]) ? "S" : "N";
             }
