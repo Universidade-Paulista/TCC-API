@@ -1,0 +1,13 @@
+C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Release\netcoreapp2.1\SeverinosAPI.deps.json
+C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Release\netcoreapp2.1\SeverinosAPI.runtimeconfig.json
+C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Release\netcoreapp2.1\SeverinosAPI.runtimeconfig.dev.json
+C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Release\netcoreapp2.1\SeverinosAPI.dll
+C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Release\netcoreapp2.1\SeverinosAPI.pdb
+C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Release\netcoreapp2.1\SeverinosAPI.csproj.CoreCompileInputs.cache
+C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Release\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cache
+C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Release\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cs
+C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Release\netcoreapp2.1\SeverinosAPI.AssemblyInfoInputs.cache
+C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Release\netcoreapp2.1\SeverinosAPI.AssemblyInfo.cs
+C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Release\netcoreapp2.1\SeverinosAPI.RazorTargetAssemblyInfo.cache
+C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Release\netcoreapp2.1\SeverinosAPI.dll
+C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Release\netcoreapp2.1\SeverinosAPI.pdb
