@@ -27,7 +27,7 @@ namespace SeverinosAPI.Controllers
                 NroCPF = Pessoa["NroCPF"].ToString(),
                 Email = Pessoa["Email"].ToString(),
                 IndSeverino = Boolean.Parse(Pessoa["IndSeverino"].ToString()),
-                Telefone = Pessoa["Telefone"].ToString()                           
+                Celular = Pessoa["Celular"].ToString()                           
             };
 
             if (Cadastro.IndSeverino == true)
@@ -50,7 +50,7 @@ namespace SeverinosAPI.Controllers
                 Nome = JsonObj["nome"],
                 NroCPF = JsonObj["cpf"],
                 Email = JsonObj["email"],
-                Telefone = JsonObj["telefone"],
+                Celular = JsonObj["celular"],
                 IndSeverino = Boolean.Parse(JsonObj["indseverino"]),
                 Senha = JsonObj["senha"]
             };
@@ -58,7 +58,7 @@ namespace SeverinosAPI.Controllers
             string InsertPessoa = 
                 "insert into tb_pessoa(nome, nrocpf, email, telefone, indseverino, senha) " +
                $"values('{CadastroPessoa.Nome}', '{CadastroPessoa.NroCPF}', '{CadastroPessoa.Email}', " +
-               $"'{CadastroPessoa.Telefone}', {CadastroPessoa.IndSeverino}, '{CadastroPessoa.Senha}')";
+               $"'{CadastroPessoa.Celular}', {CadastroPessoa.IndSeverino}, '{CadastroPessoa.Senha}')";
 
             Boolean incluiu = DBModel.RunSqlNonQuery(InsertPessoa) > 0;
 

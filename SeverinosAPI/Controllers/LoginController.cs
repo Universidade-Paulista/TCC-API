@@ -31,8 +31,9 @@ namespace SeverinosAPI.Controllers
             DBModel.GetConexao();
 
             string SelectPessoa = 
-                $"select indseverino from tb_pessoa where upper(email) = '{email.ToUpper()}' " +
-                $"and upper(senha) = '{senha.ToUpper()}'";
+                $"select indseverino from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}'";
+
+            
 
             var pessoa = DBModel.GetReader(SelectPessoa);
             pessoa.Read();

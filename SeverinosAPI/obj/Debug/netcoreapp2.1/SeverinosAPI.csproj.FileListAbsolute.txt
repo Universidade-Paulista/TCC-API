@@ -1,80 +1,18 @@
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.deps.json
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.json
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.dev.json
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.dll
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.pdb
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.csprojAssemblyReference.cache
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.csproj.CoreCompileInputs.cache
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cache
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cs
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfoInputs.cache
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfo.cs
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorTargetAssemblyInfo.cache
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.dll
-C:\Users\harley.francisco\Documents\TCC 2021\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.pdb
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\appsettings.Development.json
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\appsettings.json
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.deps.json
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.json
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.dev.json
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.dll
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.pdb
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.GeneratedMSBuildEditorConfig.editorconfig
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfoInputs.cache
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfo.cs
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.csproj.CoreCompileInputs.cache
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cache
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cs
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorTargetAssemblyInfo.cache
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.dll
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.pdb
-D:\MeusProjetos\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.genruntimeconfig.cache
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.deps.json
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.json
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.dev.json
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.dll
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.pdb
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.csprojAssemblyReference.cache
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.csproj.CoreCompileInputs.cache
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cache
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cs
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfoInputs.cache
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfo.cs
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorTargetAssemblyInfo.cache
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.dll
-C:\Users\harley.francisco\Documents\GitHub\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.pdb
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\appsettings.Development.json
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\appsettings.json
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.deps.json
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.json
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.dev.json
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.dll
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.pdb
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.GeneratedMSBuildEditorConfig.editorconfig
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfoInputs.cache
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfo.cs
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.csproj.CoreCompileInputs.cache
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cache
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cs
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorTargetAssemblyInfo.cache
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.dll
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.pdb
-D:\TCC-Severinos\SeverinosAPI\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.genruntimeconfig.cache
-D:\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\appsettings.Development.json
-D:\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\appsettings.json
-D:\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.deps.json
-D:\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.json
-D:\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.dev.json
-D:\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.dll
-D:\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.pdb
-D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.GeneratedMSBuildEditorConfig.editorconfig
-D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfoInputs.cache
-D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfo.cs
-D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.csproj.CoreCompileInputs.cache
-D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cache
-D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cs
-D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorTargetAssemblyInfo.cache
-D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.dll
-D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.pdb
-D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.genruntimeconfig.cache
-D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.csproj.AssemblyReference.cache
+D:\MeusProjetos\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\appsettings.Development.json
+D:\MeusProjetos\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\appsettings.json
+D:\MeusProjetos\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.deps.json
+D:\MeusProjetos\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.json
+D:\MeusProjetos\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.dev.json
+D:\MeusProjetos\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.dll
+D:\MeusProjetos\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.pdb
+D:\MeusProjetos\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.csproj.AssemblyReference.cache
+D:\MeusProjetos\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\MeusProjetos\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfoInputs.cache
+D:\MeusProjetos\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfo.cs
+D:\MeusProjetos\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.csproj.CoreCompileInputs.cache
+D:\MeusProjetos\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cache
+D:\MeusProjetos\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorAssemblyInfo.cs
+D:\MeusProjetos\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorTargetAssemblyInfo.cache
+D:\MeusProjetos\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.dll
+D:\MeusProjetos\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.pdb
+D:\MeusProjetos\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.genruntimeconfig.cache
