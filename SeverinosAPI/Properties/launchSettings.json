@@ -22,7 +22,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://apiseverinos.azurewebsites.net;http://127.0.0.1:5000"
+      "applicationUrl": "https://apiseverinos.azurewebsites.net;http://127.0.0.1:5000",
+      "jsWebView2Debugging": true
     }
   }
 }
