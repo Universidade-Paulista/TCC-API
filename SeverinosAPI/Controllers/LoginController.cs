@@ -24,6 +24,22 @@ namespace SeverinosAPI.Controllers
             return new string[] { pessoa["nome"].ToString() };            
         }
 
+
+        // GET api/Login
+        [HttpGet("[email}/{senha}/{severino}")]
+        public ActionResult<IEnumerable<string>> Get(String email, String senha, bool severino)
+        {
+            DBModel.GetConexao();
+
+            string pessoa = 
+                $"select nome from tb_pessoa where email = '{email.ToUpper()}' and senha = '{senha.ToUpper()}' and indseverino = = '{severino}' ";
+
+            var test = DBModel.GetReader(pessoa);
+            test.Read();
+
+            return new string[] { test["nome"].ToString() };
+        }
+
         // GET login/Login/5
         [HttpGet("{email}/{senha}")]
         public ActionResult<string> Get(String email, String senha)
