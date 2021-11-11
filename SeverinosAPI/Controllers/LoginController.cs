@@ -26,18 +26,29 @@ namespace SeverinosAPI.Controllers
 
 
         // GET api/Login
-        [HttpGet("[email}/{senha}/{severino}")]
-        public ActionResult<IEnumerable<string>> Get(String email, String senha, bool severino)
+        [HttpGet("{email}/{senha}/{indseverino}")]
+        public ActionResult<string> Gettest(String email, String senha, bool indseverino)
         {
             DBModel.GetConexao();
-
-            string pessoa = 
-                $"select nome from tb_pessoa where email = '{email.ToUpper()}' and senha = '{senha.ToUpper()}' and indseverino = = '{severino}' ";
-
-            var test = DBModel.GetReader(pessoa);
+            var test = DBModel.GetReader($"select nome from tb_pessoa where email = '{email.ToUpper()}' and senha = '{senha.ToUpper()}' and indseverino = '{indseverino}' ");
             test.Read();
 
-            return new string[] { test["nome"].ToString() };
+
+            var Login = new Models.Cadastro
+            {
+
+                Email = test["Email"].ToString(),
+                Senha = test["Senha"].ToString(),
+                IndSeverino = Boolean.Parse(test["IndSeverino"].ToString()),
+
+            };
+
+            if (Login.IndSeverino == true)
+            {
+
+            }
+
+            return System.Text.Json.JsonSerializer.Serialize(Login);
         }
 
         // GET login/Login/5
