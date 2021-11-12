@@ -38,6 +38,17 @@ namespace SeverinosAPI.Controllers
             return System.Text.Json.JsonSerializer.Serialize(Cadastro);
         }
 
+        // GET api/Cadastro
+        [HttpGet("{email}/{senha}")]
+        public ActionResult<String> getTest(String email, String senha)
+        {
+            DBModel.GetConexao();
+            var test = DBModel.GetReader($"select nome from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}' and indseverino = true ");
+            test.Read();
+
+            return  test["nome"].ToString() ;
+        }
+
         // POST Cadastro/
         [HttpPost]
         public ActionResult<Boolean> Post([FromBody] string jsonString)
