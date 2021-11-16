@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SeverinoConexao;
+using SeverinosAPI.Models;
 
 namespace SeverinosAPI.Controllers
 {
@@ -24,8 +25,29 @@ namespace SeverinosAPI.Controllers
             return new string[] { pessoa["nome"].ToString() };            
         }
 
+        // GET api/Login
+        [HttpGet("{email}/{senha}/{indseverino}")]
+        public ActionResult<string> Gettest(String email, String senha, bool indseverino)
+        {
+            DBModel.GetConexao();
+            var test = DBModel.GetReader($"select nome from tb_pessoa where email = '{email.ToUpper()}' and senha = '{senha.ToUpper()}' and indseverino = '{indseverino}' ");
+            test.Read();
 
-       
+            var Login = new Cadastro
+            {
+                Email = test["Email"].ToString(),
+                Senha = test["Senha"].ToString(),
+                IndSeverino = Boolean.Parse(test["IndSeverino"].ToString()),
+
+            };
+
+            if (Login.IndSeverino == true)
+            {
+
+            }
+
+            return System.Text.Json.JsonSerializer.Serialize(Login);
+        }
 
         // GET login/Login/5
         [HttpGet("{email}/{senha}")]
@@ -35,9 +57,7 @@ namespace SeverinosAPI.Controllers
 
             string SelectPessoa = 
                 $"select indseverino from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}'";
-
-            
-
+           
             var pessoa = DBModel.GetReader(SelectPessoa);
             pessoa.Read();
 

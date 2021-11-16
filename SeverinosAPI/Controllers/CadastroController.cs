@@ -12,7 +12,7 @@ namespace SeverinosAPI.Controllers
     [Controller]
     public class CadastroController
     {        
-        // GET api/Cadastro
+        // GET Cadastro
         [HttpGet("{idPessoa}")]
         public ActionResult<string> Get(int idPessoa)
         {
@@ -47,6 +47,24 @@ namespace SeverinosAPI.Controllers
             test.Read();
 
             return  test["nome"].ToString() ;
+		}
+		
+        // GET Cadastro
+        [HttpGet("{cpf}")]
+        public ActionResult<string> GetCPFExistente(string cpf)
+        {
+            DBModel.GetConexao();
+            var Pessoa = DBModel.GetReader($"select tp.nrocpf from tb_pessoa tp where tp.seqpessoa = {cpf}");
+            Pessoa.Read();
+
+            if (Pessoa.HasRows)     
+            {
+                return "S";
+            }
+            else
+            {
+                return "N";
+            }            
         }
 
         // POST Cadastro/
