@@ -12004,19 +12004,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\duda_\\.nuget\\packages\\": {}
+    "C:\\Users\\Robert\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\MeusProjetos\\TCC-API\\SeverinosAPI\\SeverinosAPI.csproj",
+      "projectUniqueName": "D:\\TCC-API\\SeverinosAPI\\SeverinosAPI.csproj",
       "projectName": "SeverinosAPI",
-      "projectPath": "D:\\MeusProjetos\\TCC-API\\SeverinosAPI\\SeverinosAPI.csproj",
-      "packagesPath": "C:\\Users\\duda_\\.nuget\\packages\\",
-      "outputPath": "D:\\MeusProjetos\\TCC-API\\SeverinosAPI\\obj\\",
+      "projectPath": "D:\\TCC-API\\SeverinosAPI\\SeverinosAPI.csproj",
+      "packagesPath": "C:\\Users\\Robert\\.nuget\\packages\\",
+      "outputPath": "D:\\TCC-API\\SeverinosAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\duda_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Robert\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

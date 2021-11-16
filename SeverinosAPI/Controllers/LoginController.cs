@@ -10,46 +10,8 @@ namespace SeverinosAPI.Controllers
     [Route("api/[controller]")]
     [Controller]
     public class LoginController : ControllerBase
-    {
-        // GET api/Login
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            DBModel.GetConexao();
-
-            var pessoa = DBModel.GetReader("select nome from tb_pessoa ");
-
-            pessoa.Read();
-            var tes = pessoa["nome"].ToString();
-
-            return new string[] { pessoa["nome"].ToString() };            
-        }
-
-        // GET api/Login
-        [HttpGet("{email}/{senha}/{indseverino}")]
-        public ActionResult<string> Gettest(String email, String senha, bool indseverino)
-        {
-            DBModel.GetConexao();
-            var test = DBModel.GetReader($"select nome from tb_pessoa where email = '{email.ToUpper()}' and senha = '{senha.ToUpper()}' and indseverino = '{indseverino}' ");
-            test.Read();
-
-            var Login = new Cadastro
-            {
-                Email = test["Email"].ToString(),
-                Senha = test["Senha"].ToString(),
-                IndSeverino = Boolean.Parse(test["IndSeverino"].ToString()),
-
-            };
-
-            if (Login.IndSeverino == true)
-            {
-
-            }
-
-            return System.Text.Json.JsonSerializer.Serialize(Login);
-        }
-
-        // GET login/Login/5
+    {       
+        // GET Login
         [HttpGet("{email}/{senha}")]
         public ActionResult<string> Get(String email, String senha)
         {
@@ -71,28 +33,31 @@ namespace SeverinosAPI.Controllers
             }            
         }
 
-        // POST login/Login
+        // POST Login
         [HttpPost]
         public void Post([FromBody] string jsonString)
-        {                          
-            var myJsonObj = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(jsonString.ToUpper());
-
-            int codigo = Int32.Parse(myJsonObj["CODIGO"]);
-            var login  = myJsonObj["LOGIN"];
-            var senha  = myJsonObj["SENHA"];
-
-            string sql = $"insert into tb_login(seqpessoa, login, senha) values({codigo}, '{login}', '{senha}')";
-
-            DBModel.RunSqlNonQuery(sql);
+        {                                     
         }
 
-        // PUT login/Login/5
+        // PUT Cadastro
+        [HttpPut("{idPessoa}/{senha}")]
+        public ActionResult<Boolean> RecuperaSenha(int idPessoa, string senhaNova)
+        {
+            DBModel.GetConexao();
+
+            string UpdateSenha =
+                $"update tb_pessoa set senha = '{senhaNova}' where seqpessoa = {idPessoa}";
+
+            return DBModel.RunSqlNonQuery(UpdateSenha) > 0;
+        }
+
+        // PUT Login
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE login/Login/5
+        // DELETE Login
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

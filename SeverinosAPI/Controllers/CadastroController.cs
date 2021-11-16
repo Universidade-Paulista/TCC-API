@@ -14,7 +14,7 @@ namespace SeverinosAPI.Controllers
     {        
         // GET Cadastro
         [HttpGet("{idPessoa}")]
-        public ActionResult<string> Get(int idPessoa)
+        public ActionResult<string> GetCadastro(int idPessoa)
         {
             DBModel.GetConexao();          
             var Pessoa = DBModel.GetReader($"select * from tb_pessoa tp where tp.seqpessoa = {idPessoa}");
@@ -38,15 +38,15 @@ namespace SeverinosAPI.Controllers
             return System.Text.Json.JsonSerializer.Serialize(Cadastro);
         }
 
-        // GET api/Cadastro
+        // GET Cadastro
         [HttpGet("{email}/{senha}")]
-        public ActionResult<String> getTest(String email, String senha)
+        public ActionResult<String> GetNomeSeverino(String email, String senha)
         {
             DBModel.GetConexao();
             var test = DBModel.GetReader($"select nome from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}' and indseverino = true ");
             test.Read();
 
-            return  test["nome"].ToString() ;
+            return test["nome"].ToString();
 		}
 		
         // GET Cadastro
@@ -67,7 +67,7 @@ namespace SeverinosAPI.Controllers
             }            
         }
 
-        // POST Cadastro/
+        // POST Cadastro
         [HttpPost]
         public ActionResult<Boolean> Post([FromBody] string jsonString)
         {               
@@ -139,18 +139,25 @@ namespace SeverinosAPI.Controllers
             return incluiu;
         }
 
-        // PUT Cadastro/
+        // PUT Cadastro
         [HttpPut("{idPessoa}")]
-        public void Put(int idPessoa, [FromBody] Byte imgagem)
-        {          
-            
+        public ActionResult<string> AlteraCadastro(int idPessoa, [FromBody] string jsonString)
+        {
+            return "S";
         }
 
-        // DELETE Cadastro/
-        [HttpDelete("{idPessoa}")]
-        public void Delete(int idPessoa)
+        // PUT Cadastro
+        [HttpPut("{idPessoa}/{imagem}")]
+        public ActionResult<string> AlteraImagem(int idPessoa, string imagem)
         {
+            return "S";
+        }        
 
+        // DELETE Cadastro
+        [HttpDelete("{idPessoa}")]
+        public ActionResult<string> DeletaCadastro(int idPessoa)
+        {
+            return "S";
         }
     }    
 }
