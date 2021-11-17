@@ -54,7 +54,7 @@ namespace SeverinosAPI.Controllers
         public ActionResult<string> GetCPFExistente(string cpf)
         {
             DBModel.GetConexao();
-            var Pessoa = DBModel.GetReader($"select tp.nrocpf from tb_pessoa tp where tp.seqpessoa = {cpf}");
+            var Pessoa = DBModel.GetReader($"select * from tb_pessoa tp where tp.nrocpf = '{cpf}'");
             Pessoa.Read();
 
             if (Pessoa.HasRows)     
