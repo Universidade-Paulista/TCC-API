@@ -40,13 +40,13 @@ namespace SeverinosAPI.Controllers
         }
 
         // PUT Cadastro
-        [HttpPut("{idPessoa}/{senha}")]
-        public ActionResult<Boolean> RecuperaSenha(int idPessoa, string senhaNova)
+        [HttpPut("{cpf}/{senhaNova}")]
+        public ActionResult<Boolean> RecuperaSenha(string cpf, string senhaNova)
         {
             DBModel.GetConexao();
 
             string UpdateSenha =
-                $"update tb_pessoa set senha = '{senhaNova}' where seqpessoa = {idPessoa}";
+                $"update tb_pessoa set senha = '{senhaNova}' where nrocpf = '{cpf}'";
 
             return DBModel.RunSqlNonQuery(UpdateSenha) > 0;
         }
