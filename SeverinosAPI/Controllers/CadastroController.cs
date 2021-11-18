@@ -43,10 +43,10 @@ namespace SeverinosAPI.Controllers
         public ActionResult<String> GetNomeSeverino(String email, String senha)
         {
             DBModel.GetConexao();
-            var test = DBModel.GetReader($"select nome from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}' and indseverino = true ");
-            test.Read();
+            var pessoa = DBModel.GetReader($"select nome from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}' and indseverino = true ");
+            pessoa.Read();
 
-            return test["nome"].ToString();
+            return pessoa["nome"].ToString();
 		}
 		
         // GET Cadastro
