@@ -16,26 +16,58 @@ namespace SeverinosAPI.Controllers
         [HttpGet("{idPessoa}")]
         public ActionResult<string> GetCadastro(int idPessoa)
         {
+            var CadastroPessoa = new Cadastro();
+
             DBModel.GetConexao();          
             var Pessoa = DBModel.GetReader($"select * from tb_pessoa tp where tp.seqpessoa = {idPessoa}");
             Pessoa.Read();
+            
+            CadastroPessoa.SeqPessoa = Int32.Parse(Pessoa["SeqPessoa"].ToString());
+            CadastroPessoa.Nome = Pessoa["Nome"].ToString();
+            CadastroPessoa.NroCPF = Pessoa["NroCPF"].ToString();
+            CadastroPessoa.Email = Pessoa["Email"].ToString();
+            CadastroPessoa.Telefone = Pessoa["Telefone"].ToString();
+            CadastroPessoa.IndSeverino = Boolean.Parse(Pessoa["IndSeverino"].ToString());
+            CadastroPessoa.Senha = Pessoa["Senha"].ToString();
 
-            var Cadastro = new Cadastro
-            {   
-                SeqPessoa = Int32.Parse(Pessoa["SeqPessoa"].ToString()),
-                Nome = Pessoa["Nome"].ToString(),
-                NroCPF = Pessoa["NroCPF"].ToString(),
-                Email = Pessoa["Email"].ToString(),
-                IndSeverino = Boolean.Parse(Pessoa["IndSeverino"].ToString()),
-                Telefone = Pessoa["telefone"].ToString()                           
-            };
+            DBModel.GetConexao();
+            var Endereco = DBModel.GetReader($"select * from tb_endereco te where te.seqpessoa = {idPessoa}");
+            Endereco.Read();
 
-            if (Cadastro.IndSeverino == true)
+            CadastroPessoa.Logradouro = Endereco["Logradouro"].ToString();
+            CadastroPessoa.Complemento = Endereco["Complemento"].ToString();
+            CadastroPessoa.Numero = Int32.Parse(Endereco["Numero"].ToString());
+            CadastroPessoa.Bairro = Endereco["Bairro"].ToString();
+            CadastroPessoa.Cidade = Endereco["Cidade"].ToString();
+            CadastroPessoa.Cep = Endereco["Cep"].ToString();
+            CadastroPessoa.Estado = Endereco["Estado"].ToString();           
+
+            if (CadastroPessoa.IndSeverino == true)
             {
+                DBModel.GetConexao();
+                var Colaborador = DBModel.GetReader($"select * from tb_colaborador tc where tc.seqpessoa = {idPessoa}");
+                Colaborador.Read();
 
+                CadastroPessoa.SeqColaborador = Int32.Parse(Colaborador["SeqColaborador"].ToString());
+                CadastroPessoa.Status = Colaborador["Status"].ToString();
+                CadastroPessoa.RazaoSocial = Colaborador["RazaoSocial"].ToString();
+                CadastroPessoa.NroCpfCnpj = Colaborador["NroCpfCnpj"].ToString();
+                CadastroPessoa.LinkWhatsapp = Colaborador["LinkWhatsapp"].ToString();
+                CadastroPessoa.NroTelComercial = Colaborador["NroTelComercial"].ToString();
+                CadastroPessoa.Instagram = Colaborador["Instagram"].ToString();
+                CadastroPessoa.Facebook = Colaborador["Facebook"].ToString();
+
+                float NotaAvaliacao = 0;
+
+                if (Colaborador["NotaAvaliacao"].ToString() != "")
+                {
+                    NotaAvaliacao = float.Parse(Colaborador["NotaAvaliacao"].ToString());
+                }
+
+                CadastroPessoa.NotaAvaliacao = NotaAvaliacao;
             }
 
-            return System.Text.Json.JsonSerializer.Serialize(Cadastro);
+            return System.Text.Json.JsonSerializer.Serialize(CadastroPessoa);
         }
 
         // GET Cadastro
@@ -47,25 +79,7 @@ namespace SeverinosAPI.Controllers
             pessoa.Read();
 
             return pessoa["nome"].ToString();
-		}
-		
-        // GET Cadastro
-        [HttpGet("{cpf}")]
-        public ActionResult<string> GetCPFExistente(string cpf)
-        {
-            DBModel.GetConexao();
-            var Pessoa = DBModel.GetReader($"select * from tb_pessoa tp where tp.nrocpf = '{cpf}'");
-            Pessoa.Read();
-
-            if (Pessoa.HasRows)     
-            {
-                return "S";
-            }
-            else
-            {
-                return "N";
-            }            
-        }
+		}	        
 
         // POST Cadastro
         [HttpPost]
@@ -148,9 +162,14 @@ namespace SeverinosAPI.Controllers
 
         // PUT Cadastro
         [HttpPut("{idPessoa}/{imagem}")]
-        public ActionResult<string> AlteraImagem(int idPessoa, string imagem)
+        public ActionResult<Boolean> AlteraImagem(int idPessoa, string imagem)
         {
-            return "S";
+            DBModel.GetConexao();
+
+            string UpdateSenha =
+                $"update tb_pessoa set igmLogo = '{imagem}' where SeqPessoa = {idPessoa}";
+
+            return DBModel.RunSqlNonQuery(UpdateSenha) > 0;
         }        
 
         // DELETE Cadastro

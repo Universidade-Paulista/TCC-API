@@ -33,12 +33,6 @@ namespace SeverinosAPI.Controllers
             }            
         }
 
-        // POST Login
-        [HttpPost]
-        public void Post([FromBody] string jsonString)
-        {                                     
-        }
-
         // PUT Cadastro
         [HttpPut("{cpf}/{senhaNova}")]
         public ActionResult<Boolean> RecuperaSenha(string cpf, string senhaNova)
@@ -49,18 +43,6 @@ namespace SeverinosAPI.Controllers
                 $"update tb_pessoa set senha = '{senhaNova}' where nrocpf = '{cpf}'";
 
             return DBModel.RunSqlNonQuery(UpdateSenha) > 0;
-        }
-
-        // PUT Login
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE Login
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
