@@ -147,6 +147,11 @@ namespace SeverinosAPI.Controllers
                         $"values({SeqPessoa}, 'I', '{CadastroColaborador.RazaoSocial}', '{CadastroColaborador.NroCpfCnpj}', " +
                         $"'{CadastroColaborador.LinkWhatsapp}', '{CadastroColaborador.NroTelComercial}')";
                     DBModel.RunSqlNonQuery(InsertColaborador);
+
+                    var ColaboradorProfissao = new Cadastro 
+                    { 
+                    
+                    };
                 }
             }
 
