@@ -14,23 +14,17 @@ namespace SeverinosAPI.Controllers
     {
         // GET Profissao
         [HttpGet()]
-        public ActionResult<List<Profissao>> GetProfissoes()
+        public ActionResult<List<string>> GetProfissoes()
         {
             DBModel.GetConexao();
             var Profissoes = DBModel.GetReader($"select * from tb_profissao");
             Profissoes.Read();
 
-            List<Profissao> Lista = new List<Profissao>();            
+            List<string> Lista = new List<string>();            
 
             while (Profissoes.Read())
-            {
-                var Prof = new Profissao
-                {
-                    SeqProfissao = int.Parse(Profissoes["SeqProfissao"].ToString()),
-                    NomeProfissao = Profissoes["NomeProfissao"].ToString()
-                };
-
-                Lista.Add(Prof);
+            {               
+                Lista.Add(Profissoes["NomeProfissao"].ToString());
             }
 
             return Lista;
