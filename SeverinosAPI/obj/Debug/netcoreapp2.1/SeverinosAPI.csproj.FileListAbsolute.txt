@@ -23,7 +23,6 @@ D:\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.json
 D:\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.runtimeconfig.dev.json
 D:\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.dll
 D:\TCC-API\SeverinosAPI\bin\Debug\netcoreapp2.1\SeverinosAPI.pdb
-D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.csproj.AssemblyReference.cache
 D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.GeneratedMSBuildEditorConfig.editorconfig
 D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfoInputs.cache
 D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.AssemblyInfo.cs

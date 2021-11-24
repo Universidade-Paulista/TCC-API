@@ -65,6 +65,15 @@ namespace SeverinosAPI.Controllers
                 }
 
                 CadastroPessoa.NotaAvaliacao = NotaAvaliacao;
+
+                DBModel.GetConexao();
+                var Profissao = DBModel.GetReader(
+                    $"select tp.nomeprofissao from tb_profissaocolaborador tpc " +
+                    $"inner join tb_profissao tp on tp.seqprofissao = tpc.seqprofissao" +
+                    $"where tpc.seqcolaborador = {CadastroPessoa.SeqColaborador}");
+                Profissao.Read();
+
+                CadastroPessoa.NomeProfissao = Profissao["NomeProfissao"].ToString();
             }
 
             return System.Text.Json.JsonSerializer.Serialize(CadastroPessoa);
@@ -148,10 +157,24 @@ namespace SeverinosAPI.Controllers
                         $"'{CadastroColaborador.LinkWhatsapp}', '{CadastroColaborador.NroTelComercial}')";
                     DBModel.RunSqlNonQuery(InsertColaborador);
 
-                    var ColaboradorProfissao = new Cadastro 
-                    { 
-                    
-                    };
+                    DBModel.GetConexao();
+                    var Colaborador = DBModel.GetReader($"select seqcolaborador from tb_colaborador tc where tc.seqpessoa = {SeqPessoa}");
+                    Colaborador.Read();
+
+                    DBModel.GetConexao();
+                    var Profissao = DBModel.GetReader($"select seqprofissao from tb_profissao tp where tp.nomeprofissao = '{JsonObj["NomeProfissao"]}'");
+                    Profissao.Read();
+
+                    var ColaboradorProfissao = new ProfissaoColaborador
+                    {
+                        SeqColaborador = Int32.Parse(Colaborador["SeqColaborador"].ToString()),
+                        SeqProfissao = Int32.Parse(Profissao["SeqProfissao"].ToString()),
+                    };                    
+
+                    string InsertProfissaoColaborador =
+                        $"insert into tb_profissaocolaborador(seqcolaborador, seqprofissao) " +
+                        $"values({ColaboradorProfissao.SeqColaborador}, {ColaboradorProfissao.SeqProfissao})";
+                    DBModel.RunSqlNonQuery(InsertProfissaoColaborador);
                 }
             }
 
@@ -160,9 +183,68 @@ namespace SeverinosAPI.Controllers
 
         // PUT Cadastro
         [HttpPut("{idPessoa}")]
-        public ActionResult<string> AlteraCadastro(int idPessoa, [FromBody] string jsonString)
+        public ActionResult<Boolean> AlteraCadastro(int idPessoa, [FromBody] string jsonString)
         {
-            return "S";
+            var JsonObj = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(jsonString);
+
+            DBModel.GetConexao();
+            var Colaborador = DBModel.GetReader($"select seqcolaborador from tb_colaborador tc where tc.seqpessoa = {idPessoa}");
+            Colaborador.Read();
+
+            var CadastroPessoa = new Cadastro
+            {
+                //tb_pessoa
+                SeqPessoa = idPessoa,
+                Nome = JsonObj["nome"],
+                NroCPF = JsonObj["cpf"],
+                Email = JsonObj["email"],
+                Telefone = JsonObj["telefone"],
+            
+                //tb_endereco
+                Logradouro = JsonObj["logradouro"],
+                Complemento = JsonObj["complemento"],
+                Numero = Int32.Parse(JsonObj["numero"]),
+                Bairro = JsonObj["bairro"],
+                Cep = JsonObj["cep"],
+                Estado = JsonObj["estado"],
+                Cidade = JsonObj["cidade"],
+
+                //tb_colaborador
+                SeqColaborador = Int32.Parse(Colaborador["seqcolaborador"].ToString()),
+                RazaoSocial = JsonObj["razaosocial"],
+                NroCpfCnpj = JsonObj["nrocpfcnpj"],
+                LinkWhatsapp = JsonObj["linkwhatsapp"],
+                Instagram = JsonObj["instagram"],
+                Facebook = JsonObj["facebook"],
+                NroTelComercial = JsonObj["nrotelcomercial"]
+            };            
+
+            string UpdatePessoa = 
+                $"update tb_pesssoa set nome = '{CadastroPessoa.Nome}', " +
+                $"nrocpf = '{CadastroPessoa.NroCPF}', email = '{CadastroPessoa.Email}', " +
+                $"telefone = '{CadastroPessoa.Telefone}' where seqpessoa = {CadastroPessoa.SeqPessoa}";
+
+            string UpdateEndereco = 
+                $"update tb_endereco set logradouro = '{CadastroPessoa.Logradouro}', complemento = '{CadastroPessoa.Complemento}', " +
+                $"numero = {CadastroPessoa.Numero}, bairro = '{CadastroPessoa.Bairro}', " +
+                $"cep = '{CadastroPessoa.Cep}', estado '{CadastroPessoa.Estado}', cidade = '{CadastroPessoa.Cidade}'" +
+                $"where seqpessoa = {CadastroPessoa.SeqPessoa}";
+
+            string UpdateColaborador = 
+                $"update tb_colaborador set razaosocial = '{CadastroPessoa.RazaoSocial}', nrocpfcnpj = '{CadastroPessoa.NroCpfCnpj}', " +
+                $"linkwhatsapp = '{CadastroPessoa.LinkWhatsapp}', instagram = '{CadastroPessoa.Instagram}', " +
+                $"facebook = '{CadastroPessoa.Facebook}', nrotelcomercial = '{CadastroPessoa.NroTelComercial}' " +
+                $"where seqpessoa = {CadastroPessoa.SeqPessoa}";
+
+            DBModel.GetConexao();
+            var Profissao = DBModel.GetReader($"select seqprofissao from tb_profissao tp where tp.nomeprofissao = '{JsonObj["NomeProfissao"]}'");
+            Profissao.Read();
+
+            string UpdateProfissaoColaborador = 
+                $"";
+
+
+            return true;
         }
 
         // PUT Cadastro

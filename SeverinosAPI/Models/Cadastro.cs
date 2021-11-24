@@ -35,6 +35,6 @@ namespace SeverinosAPI.Models
         public string Instagram { get; set; }
         public string Facebook { get; set; }
         public float NotaAvaliacao { get; set; }
-
+        public string NomeProfissao { get; set; }
     }
 }
