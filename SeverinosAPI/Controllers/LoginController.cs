@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SeverinoConexao;
 using SeverinosAPI.Models;
-using Npgsql;
 
 namespace SeverinosAPI.Controllers
 {
@@ -12,16 +11,12 @@ namespace SeverinosAPI.Controllers
     [Controller]
     public class LoginController : ControllerBase
     {
-        private NpgsqlConnection Conexao;
-
         // GET Login
         [HttpGet("{email}/{senha}")]
         public ActionResult<string> Get(String email, String senha)
         {
             try 
             {
-                Conexao = DBModel.GetConexao();
-
                 string SelectPessoa =
                     $"select indseverino from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}'";
 
@@ -39,7 +34,7 @@ namespace SeverinosAPI.Controllers
             }
             finally
             {
-                Conexao.Close();
+                DBModel.Conexao.Close();
             }                        
         }
 
@@ -49,8 +44,6 @@ namespace SeverinosAPI.Controllers
         {
             try
             {
-                Conexao = DBModel.GetConexao();
-
                 string UpdateSenha =
                     $"update tb_pessoa set senha = '{senhaNova}' where nrocpf = '{cpf}'";
 
@@ -58,7 +51,7 @@ namespace SeverinosAPI.Controllers
             }
             finally
             {
-                Conexao.Close();
+                DBModel.Conexao.Close();
             }            
         }
     }

@@ -8,18 +8,19 @@ namespace SeverinoConexao
 {
     public class DBModel
     {
+        public static NpgsqlConnection Conexao = GetConexao();
+
         public static Npgsql.NpgsqlConnection GetConexao()
         {
             NpgsqlConnection conn;
             string myConnectionString;
 
             myConnectionString = DBModel.GetConnectionString();
-
             try
             {
                 conn = new NpgsqlConnection();
                 conn.ConnectionString = myConnectionString;
-                conn.Open();
+                conn.Open();                
 
                 return conn;
             }
@@ -49,7 +50,7 @@ namespace SeverinoConexao
         {
             NpgsqlDataReader drRetorno;
             NpgsqlCommand oCmd = new NpgsqlCommand();
-            oCmd.Connection = DBModel.GetConexao();
+            oCmd.Connection = Conexao;
             oCmd.CommandText = sSql;
 
             drRetorno = oCmd.ExecuteReader();
@@ -60,7 +61,7 @@ namespace SeverinoConexao
         public static int RunSqlNonQuery(string sSql)
         {
             NpgsqlCommand oCmd = new NpgsqlCommand();
-            oCmd.Connection = DBModel.GetConexao();
+            oCmd.Connection = Conexao;
             oCmd.CommandText = sSql;
 
             int iRetorno = oCmd.ExecuteNonQuery();            
