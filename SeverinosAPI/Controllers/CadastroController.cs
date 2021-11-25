@@ -223,26 +223,30 @@ namespace SeverinosAPI.Controllers
                 $"update tb_pesssoa set nome = '{CadastroPessoa.Nome}', " +
                 $"nrocpf = '{CadastroPessoa.NroCPF}', email = '{CadastroPessoa.Email}', " +
                 $"telefone = '{CadastroPessoa.Telefone}' where seqpessoa = {CadastroPessoa.SeqPessoa}";
+            DBModel.RunSqlNonQuery(UpdatePessoa);
 
             string UpdateEndereco = 
                 $"update tb_endereco set logradouro = '{CadastroPessoa.Logradouro}', complemento = '{CadastroPessoa.Complemento}', " +
                 $"numero = {CadastroPessoa.Numero}, bairro = '{CadastroPessoa.Bairro}', " +
                 $"cep = '{CadastroPessoa.Cep}', estado '{CadastroPessoa.Estado}', cidade = '{CadastroPessoa.Cidade}'" +
                 $"where seqpessoa = {CadastroPessoa.SeqPessoa}";
+            DBModel.RunSqlNonQuery(UpdateEndereco);
 
             string UpdateColaborador = 
                 $"update tb_colaborador set razaosocial = '{CadastroPessoa.RazaoSocial}', nrocpfcnpj = '{CadastroPessoa.NroCpfCnpj}', " +
                 $"linkwhatsapp = '{CadastroPessoa.LinkWhatsapp}', instagram = '{CadastroPessoa.Instagram}', " +
                 $"facebook = '{CadastroPessoa.Facebook}', nrotelcomercial = '{CadastroPessoa.NroTelComercial}' " +
                 $"where seqpessoa = {CadastroPessoa.SeqPessoa}";
+            DBModel.RunSqlNonQuery(UpdateColaborador);
 
             DBModel.GetConexao();
             var Profissao = DBModel.GetReader($"select seqprofissao from tb_profissao tp where tp.nomeprofissao = '{JsonObj["NomeProfissao"]}'");
             Profissao.Read();
 
             string UpdateProfissaoColaborador = 
-                $"";
-
+                $"update tb_profissaocolaborador set seqprofissao = {Int32.Parse(Profissao["seqprofissao"].ToString())} " +
+                $"where seqcolaborador = {CadastroPessoa.SeqColaborador}";
+            DBModel.RunSqlNonQuery(UpdateProfissaoColaborador);
 
             return true;
         }
