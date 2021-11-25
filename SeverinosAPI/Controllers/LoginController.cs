@@ -18,38 +18,48 @@ namespace SeverinosAPI.Controllers
         [HttpGet("{email}/{senha}")]
         public ActionResult<string> Get(String email, String senha)
         {
-            Conexao = DBModel.GetConexao();
-
-            string SelectPessoa = 
-                $"select indseverino from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}'";
-           
-            var pessoa = DBModel.GetReader(SelectPessoa);
-            pessoa.Read();
-
-            if (pessoa.HasRows)
+            try 
             {
-                return Convert.ToBoolean(pessoa["indseverino"]) ? "S" : "N";
-            }
-            else
-            {
-                return "E";
-            }
+                Conexao = DBModel.GetConexao();
 
-            Conexao.Close();
+                string SelectPessoa =
+                    $"select indseverino from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}'";
+
+                var pessoa = DBModel.GetReader(SelectPessoa);
+                pessoa.Read();
+
+                if (pessoa.HasRows)
+                {
+                    return Convert.ToBoolean(pessoa["indseverino"]) ? "S" : "N";
+                }
+                else
+                {
+                    return "E";
+                }
+            }
+            finally
+            {
+                Conexao.Close();
+            }                        
         }
 
         // PUT Cadastro
         [HttpPut("{cpf}/{senhaNova}")]
         public ActionResult<Boolean> RecuperaSenha(string cpf, string senhaNova)
         {
-            Conexao = DBModel.GetConexao();
+            try
+            {
+                Conexao = DBModel.GetConexao();
 
-            string UpdateSenha =
-                $"update tb_pessoa set senha = '{senhaNova}' where nrocpf = '{cpf}'";
+                string UpdateSenha =
+                    $"update tb_pessoa set senha = '{senhaNova}' where nrocpf = '{cpf}'";
 
-            return DBModel.RunSqlNonQuery(UpdateSenha) > 0;
-
-            Conexao.Close();
+                return DBModel.RunSqlNonQuery(UpdateSenha) > 0;
+            }
+            finally
+            {
+                Conexao.Close();
+            }            
         }
     }
 }
