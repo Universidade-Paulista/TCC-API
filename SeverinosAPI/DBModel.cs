@@ -8,21 +8,27 @@ namespace SeverinoConexao
 {
     public class DBModel
     {
-        public static NpgsqlConnection Conexao = GetConexao();
+        public static NpgsqlConnection Conexao = GetConexao(Conexao);
 
-        public static Npgsql.NpgsqlConnection GetConexao()
+        public static Npgsql.NpgsqlConnection GetConexao(NpgsqlConnection conn)
         {
-            NpgsqlConnection conn;
             string myConnectionString;
 
             myConnectionString = DBModel.GetConnectionString();
             try
             {
-                conn = new NpgsqlConnection();
-                conn.ConnectionString = myConnectionString;
-                conn.Open();                
+                if (conn.State == System.Data.ConnectionState.Open) 
+                {
+                    return conn;                    
+                } 
+                else 
+                {
+                    conn = new NpgsqlConnection();
+                    conn.ConnectionString = myConnectionString;
+                    conn.Open();
 
-                return conn;
+                    return conn;
+                }                                          
             }
             catch (Npgsql.NpgsqlException Ex)
             {
