@@ -132,12 +132,14 @@ namespace SeverinosAPI.Controllers
                    $"'{CadastroPessoa.Telefone}', {CadastroPessoa.IndSeverino}, '{CadastroPessoa.Senha}')";
 
                 Boolean incluiu = DBModel.RunSqlNonQuery(InsertPessoa) > 0;
+                DBModel.Conexao.Close();
 
                 if (incluiu) {
                     var Pessoa = DBModel.GetReader($"select seqpessoa from tb_pessoa tp where tp.nrocpf = '{CadastroPessoa.NroCPF}'");
                     Pessoa.Read();
 
                     int SeqPessoa = Int32.Parse(Pessoa["SeqPessoa"].ToString());
+                    DBModel.Conexao.Close();
 
                     var CadastroEndereco = new Cadastro
                     {                   
@@ -157,6 +159,7 @@ namespace SeverinosAPI.Controllers
                         $"{CadastroEndereco.Numero}, '{CadastroEndereco.Bairro}', '{CadastroEndereco.Cep}', " +
                         $"'{CadastroEndereco.Estado}', '{CadastroEndereco.Cidade}')";
                     DBModel.RunSqlNonQuery(InsertEndereco);
+                    DBModel.Conexao.Close();
 
                     if (CadastroPessoa.IndSeverino == true)
                     {
@@ -174,23 +177,27 @@ namespace SeverinosAPI.Controllers
                             $"values({SeqPessoa}, 'I', '{CadastroColaborador.RazaoSocial}', '{CadastroColaborador.NroCpfCnpj}', " +
                             $"'{CadastroColaborador.LinkWhatsapp}', '{CadastroColaborador.NroTelComercial}')";
                         DBModel.RunSqlNonQuery(InsertColaborador);
+                        DBModel.Conexao.Close();
+
+                        var ColaboradorProfissao = new ProfissaoColaborador();
 
                         var Colaborador = DBModel.GetReader($"select seqcolaborador from tb_colaborador tc where tc.seqpessoa = {SeqPessoa}");
                         Colaborador.Read();
 
+                        ColaboradorProfissao.SeqColaborador = Int32.Parse(Colaborador["SeqColaborador"].ToString());
+                        DBModel.Conexao.Close();
+
                         var Profissao = DBModel.GetReader($"select seqprofissao from tb_profissao tp where tp.nomeprofissao = '{JsonObj["NomeProfissao"]}'");
                         Profissao.Read();
 
-                        var ColaboradorProfissao = new ProfissaoColaborador
-                        {
-                            SeqColaborador = Int32.Parse(Colaborador["SeqColaborador"].ToString()),
-                            SeqProfissao = Int32.Parse(Profissao["SeqProfissao"].ToString()),
-                        };                    
-
+                        ColaboradorProfissao.SeqProfissao = Int32.Parse(Profissao["SeqProfissao"].ToString());
+                        DBModel.Conexao.Close();
+                         
                         string InsertProfissaoColaborador =
                             $"insert into tb_profissaocolaborador(seqcolaborador, seqprofissao) " +
                             $"values({ColaboradorProfissao.SeqColaborador}, {ColaboradorProfissao.SeqProfissao})";
                         DBModel.RunSqlNonQuery(InsertProfissaoColaborador);
+                        DBModel.Conexao.Close();
                     }
                 }
 
