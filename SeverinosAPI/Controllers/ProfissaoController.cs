@@ -16,18 +16,24 @@ namespace SeverinosAPI.Controllers
         [HttpGet()]
         public ActionResult<List<string>> GetProfissoes()
         {
-            DBModel.GetConexao();
-            var Profissoes = DBModel.GetReader($"select * from tb_profissao");
-            Profissoes.Read();
+            try
+            { 
+                var Profissoes = DBModel.GetReader($"select * from tb_profissao");
+                Profissoes.Read();
 
-            List<string> Lista = new List<string>();            
+                List<string> Lista = new List<string>();            
 
-            while (Profissoes.Read())
-            {               
-                Lista.Add(Profissoes["NomeProfissao"].ToString());
+                while (Profissoes.Read())
+                {               
+                    Lista.Add(Profissoes["NomeProfissao"].ToString());
+                }
+
+                return Lista;
             }
-
-            return Lista;
+            finally
+            {
+                DBModel.Conexao.Close();
+            }
         }
     }
 }

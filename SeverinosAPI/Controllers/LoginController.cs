@@ -15,7 +15,7 @@ namespace SeverinosAPI.Controllers
         [HttpGet("{email}/{senha}")]
         public ActionResult<string> Get(String email, String senha)
         {
-            try 
+            try
             {
                 string SelectPessoa =
                     $"select indseverino from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}'";
@@ -35,24 +35,17 @@ namespace SeverinosAPI.Controllers
             finally
             {
                 DBModel.Conexao.Close();
-            }                        
+            }
         }
 
         // PUT Cadastro
         [HttpPut("{cpf}/{senhaNova}")]
         public ActionResult<Boolean> RecuperaSenha(string cpf, string senhaNova)
-        {
-            try
-            {
-                string UpdateSenha =
-                    $"update tb_pessoa set senha = '{senhaNova}' where nrocpf = '{cpf}'";
+        {            
+            string UpdateSenha =
+                $"update tb_pessoa set senha = '{senhaNova}' where nrocpf = '{cpf}'";
 
-                return DBModel.RunSqlNonQuery(UpdateSenha) > 0;
-            }
-            finally
-            {
-                DBModel.Conexao.Close();
-            }            
+            return DBModel.RunSqlNonQuery(UpdateSenha) > 0;            
         }
     }
 }

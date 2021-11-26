@@ -8,26 +8,31 @@ namespace SeverinoConexao
 {
     public class DBModel
     {
-        public static NpgsqlConnection Conexao = GetConexao(Conexao);
+        public static NpgsqlConnection Conexao;
 
-        public static Npgsql.NpgsqlConnection GetConexao(NpgsqlConnection conn)
+        public static Npgsql.NpgsqlConnection GetConexao()
         {
             string myConnectionString;
 
             myConnectionString = DBModel.GetConnectionString();
             try
             {
-                if (conn.State == System.Data.ConnectionState.Open) 
+                if (Conexao != null) 
                 {
-                    return conn;                    
+                    if (Conexao.State == System.Data.ConnectionState.Closed)
+                    {
+                        Conexao.Open();
+                    }
+
+                    return Conexao;                    
                 } 
                 else 
                 {
-                    conn = new NpgsqlConnection();
-                    conn.ConnectionString = myConnectionString;
-                    conn.Open();
+                    Conexao = new NpgsqlConnection();
+                    Conexao.ConnectionString = myConnectionString;
+                    Conexao.Open();
 
-                    return conn;
+                    return Conexao;
                 }                                          
             }
             catch (Npgsql.NpgsqlException Ex)
@@ -55,6 +60,8 @@ namespace SeverinoConexao
         public static Npgsql.NpgsqlDataReader GetReader(string sSql)
         {
             NpgsqlDataReader drRetorno;
+            Conexao = GetConexao();
+
             NpgsqlCommand oCmd = new NpgsqlCommand();
             oCmd.Connection = Conexao;
             oCmd.CommandText = sSql;
@@ -67,6 +74,8 @@ namespace SeverinoConexao
         public static int RunSqlNonQuery(string sSql)
         {
             NpgsqlCommand oCmd = new NpgsqlCommand();
+            Conexao = GetConexao();
+
             oCmd.Connection = Conexao;
             oCmd.CommandText = sSql;
 
