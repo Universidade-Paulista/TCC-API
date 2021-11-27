@@ -221,12 +221,12 @@ namespace SeverinosAPI.Controllers
                 Colaborador.Read();
 
                 var CadastroPessoa = new Cadastro
+
                 {
                     //tb_pessoa
                     SeqPessoa = idPessoa,
                     Nome = JsonObj["nome"],
                     NroCPF = JsonObj["cpf"],
-                    Email = JsonObj["email"],
                     Telefone = JsonObj["telefone"],
                 
                     //tb_endereco
@@ -243,16 +243,16 @@ namespace SeverinosAPI.Controllers
                     RazaoSocial = JsonObj["razaosocial"],
                     NroCpfCnpj = JsonObj["nrocpfcnpj"],
                     LinkWhatsapp = JsonObj["linkwhatsapp"],
-                    Instagram = JsonObj["instagram"],
-                    Facebook = JsonObj["facebook"],
                     NroTelComercial = JsonObj["nrotelcomercial"]
-                };            
+                };
+                DBModel.Conexao.Close();
 
                 string UpdatePessoa = 
                     $"update tb_pesssoa set nome = '{CadastroPessoa.Nome}', " +
-                    $"nrocpf = '{CadastroPessoa.NroCPF}', email = '{CadastroPessoa.Email}', " +
+                    $"nrocpf = '{CadastroPessoa.NroCPF}', "+
                     $"telefone = '{CadastroPessoa.Telefone}' where seqpessoa = {CadastroPessoa.SeqPessoa}";
                 DBModel.RunSqlNonQuery(UpdatePessoa);
+                DBModel.Conexao.Close();
 
                 string UpdateEndereco = 
                     $"update tb_endereco set logradouro = '{CadastroPessoa.Logradouro}', complemento = '{CadastroPessoa.Complemento}', " +
@@ -260,21 +260,26 @@ namespace SeverinosAPI.Controllers
                     $"cep = '{CadastroPessoa.Cep}', estado '{CadastroPessoa.Estado}', cidade = '{CadastroPessoa.Cidade}'" +
                     $"where seqpessoa = {CadastroPessoa.SeqPessoa}";
                 DBModel.RunSqlNonQuery(UpdateEndereco);
+                DBModel.Conexao.Close();
 
                 string UpdateColaborador = 
                     $"update tb_colaborador set razaosocial = '{CadastroPessoa.RazaoSocial}', nrocpfcnpj = '{CadastroPessoa.NroCpfCnpj}', " +
-                    $"linkwhatsapp = '{CadastroPessoa.LinkWhatsapp}', instagram = '{CadastroPessoa.Instagram}', " +
-                    $"facebook = '{CadastroPessoa.Facebook}', nrotelcomercial = '{CadastroPessoa.NroTelComercial}' " +
+                    $"linkwhatsapp = '{CadastroPessoa.LinkWhatsapp}', "+
+                    $"nrotelcomercial = '{CadastroPessoa.NroTelComercial}' " +
                     $"where seqpessoa = {CadastroPessoa.SeqPessoa}";
                 DBModel.RunSqlNonQuery(UpdateColaborador);
+                DBModel.Conexao.Close();
 
                 var Profissao = DBModel.GetReader($"select seqprofissao from tb_profissao tp where tp.nomeprofissao = '{JsonObj["NomeProfissao"]}'");
                 Profissao.Read();
 
-                string UpdateProfissaoColaborador = 
+                string UpdateProfissaoColaborador =
                     $"update tb_profissaocolaborador set seqprofissao = {Int32.Parse(Profissao["seqprofissao"].ToString())} " +
                     $"where seqcolaborador = {CadastroPessoa.SeqColaborador}";
+
+                DBModel.Conexao.Close();
                 DBModel.RunSqlNonQuery(UpdateProfissaoColaborador);
+                DBModel.Conexao.Close();
 
                 return true;
             }
