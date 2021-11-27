@@ -220,8 +220,14 @@ namespace SeverinosAPI.Controllers
                 var Colaborador = DBModel.GetReader($"select seqcolaborador from tb_colaborador tc where tc.seqpessoa = {idPessoa}");
                 Colaborador.Read();
 
-                var CadastroPessoa = new Cadastro
+                int SeqColaborador = 0;
 
+                if (Colaborador.HasRows)
+                {
+                    SeqColaborador = Int32.Parse(Colaborador["seqcolaborador"].ToString());
+                }            
+
+                var CadastroPessoa = new Cadastro
                 {
                     //tb_pessoa
                     SeqPessoa = idPessoa,
@@ -238,8 +244,7 @@ namespace SeverinosAPI.Controllers
                     Estado = JsonObj["estado"],
                     Cidade = JsonObj["cidade"],
 
-                    //tb_colaborador
-                    SeqColaborador = Int32.Parse(Colaborador["seqcolaborador"].ToString()),
+                    //tb_colaborador                    
                     RazaoSocial = JsonObj["razaosocial"],
                     NroCpfCnpj = JsonObj["nrocpfcnpj"],
                     LinkWhatsapp = JsonObj["linkwhatsapp"],
@@ -248,16 +253,16 @@ namespace SeverinosAPI.Controllers
                 DBModel.Conexao.Close();
 
                 string UpdatePessoa = 
-                    $"update tb_pesssoa set nome = '{CadastroPessoa.Nome}', " +
+                    $"update tb_pessoa set nome = '{CadastroPessoa.Nome}', " +
                     $"nrocpf = '{CadastroPessoa.NroCPF}', "+
                     $"telefone = '{CadastroPessoa.Telefone}' where seqpessoa = {CadastroPessoa.SeqPessoa}";
-                DBModel.RunSqlNonQuery(UpdatePessoa);
+                Boolean Alterou = DBModel.RunSqlNonQuery(UpdatePessoa) > 0;
                 DBModel.Conexao.Close();
 
                 string UpdateEndereco = 
                     $"update tb_endereco set logradouro = '{CadastroPessoa.Logradouro}', complemento = '{CadastroPessoa.Complemento}', " +
                     $"numero = {CadastroPessoa.Numero}, bairro = '{CadastroPessoa.Bairro}', " +
-                    $"cep = '{CadastroPessoa.Cep}', estado '{CadastroPessoa.Estado}', cidade = '{CadastroPessoa.Cidade}'" +
+                    $"cep = '{CadastroPessoa.Cep}', estado = '{CadastroPessoa.Estado}', cidade = '{CadastroPessoa.Cidade}'" +
                     $"where seqpessoa = {CadastroPessoa.SeqPessoa}";
                 DBModel.RunSqlNonQuery(UpdateEndereco);
                 DBModel.Conexao.Close();
@@ -270,18 +275,7 @@ namespace SeverinosAPI.Controllers
                 DBModel.RunSqlNonQuery(UpdateColaborador);
                 DBModel.Conexao.Close();
 
-                var Profissao = DBModel.GetReader($"select seqprofissao from tb_profissao tp where tp.nomeprofissao = '{JsonObj["NomeProfissao"]}'");
-                Profissao.Read();
-
-                string UpdateProfissaoColaborador =
-                    $"update tb_profissaocolaborador set seqprofissao = {Int32.Parse(Profissao["seqprofissao"].ToString())} " +
-                    $"where seqcolaborador = {CadastroPessoa.SeqColaborador}";
-
-                DBModel.Conexao.Close();
-                DBModel.RunSqlNonQuery(UpdateProfissaoColaborador);
-                DBModel.Conexao.Close();
-
-                return true;
+                return Alterou;
             }
             finally
             {
