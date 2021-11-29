@@ -56,17 +56,22 @@ namespace SeverinosAPI.Controllers
                     CadastroPessoa.NroCpfCnpj = Colaborador["NroCpfCnpj"].ToString();
                     CadastroPessoa.LinkWhatsapp = Colaborador["LinkWhatsapp"].ToString();
                     CadastroPessoa.NroTelComercial = Colaborador["NroTelComercial"].ToString();
-                    CadastroPessoa.Instagram = Colaborador["Instagram"].ToString();
-                    CadastroPessoa.Facebook = Colaborador["Facebook"].ToString();
+              
                     DBModel.Conexao.Close();
 
+                    String select = $"select tp.nomeprofissao from tb_profissaocolaborador tpc " +
+                       $"inner join tb_profissao tp on tp.seqprofissao = tpc.seqprofissao " +
+                       $"where tpc.seqcolaborador = {CadastroPessoa.SeqColaborador}";
+
                     var Profissao = DBModel.GetReader(
-                        $"select tp.nomeprofissao from tb_profissaocolaborador tpc " +
-                        $"inner join tb_profissao tp on tp.seqprofissao = tpc.seqprofissao" +
-                        $"where tpc.seqcolaborador = {CadastroPessoa.SeqColaborador}");
+                       select);
+                    
                     Profissao.Read();
 
-                    CadastroPessoa.NomeProfissao = Profissao["NomeProfissao"].ToString();
+                    if (Profissao.HasRows) { 
+                        CadastroPessoa.NomeProfissao = Profissao["NomeProfissao"].ToString(); 
+                    }
+                   
                 }
 
                 return System.Text.Json.JsonSerializer.Serialize(CadastroPessoa);
