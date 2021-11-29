@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SeverinoConexao;
+using SeverinosAPI.Models;
 
 namespace SeverinosAPI.Controllers
 {
@@ -25,31 +26,42 @@ namespace SeverinosAPI.Controllers
             }
         }
 
-        public List<string> GetListaSeverinos(string idcolabnomeprof)
+        public List<Colaborador> GetListaSeverinos(string idcolabnomeprof)
         {
             try
             {
                 var Profisssao = DBModel.GetReader($"select seqprofissao from tb_profissao where upper(nomeprofissao) = '{idcolabnomeprof.ToUpper()}'");
                 Profisssao.Read();
 
-                List<string> Colaboradores = new List<string>();
+                List<Colaborador> Colaboradores = new List<Colaborador>();               
 
                 if (Profisssao.HasRows)
                 {
                     string SelectColaboradoes =
-                        " select tc.razaosocial                        " +
-                        "   from tb_profissaocolaborador tp            " +
-                        "  inner join tb_colaborador tc                " +
-                        "     on tp.seqcolaborador = tc.seqcolaborador " +
-                       $"  where tp.seqprofissao = {Int32.Parse(Profisssao["seqprofissao"].ToString())} ";
+                        " select tc.seqcolaborador, tc.razaosocial, cast(tps.imglogo as varchar) imglogo" +
+                        "   from tb_profissaocolaborador tp                     " +
+                        "  inner join tb_colaborador tc                         " +
+                        "     on tp.seqcolaborador = tc.seqcolaborador          " +
+                        "  inner join tb_pessoa tps                             " +
+                        "     on tps.seqpessoa = tc.seqpessoa                   " +
+                       $"  where tp.seqprofissao = {Int32.Parse(Profisssao["seqprofissao"].ToString())} "+
+                        "    and tc.status = 'A'                                ";
                     DBModel.Conexao.Close();
 
                     var Colaborador = DBModel.GetReader(SelectColaboradoes);
 
                     while (Colaborador.Read())
                     {
-                        Colaboradores.Add(Colaborador["razaosocial"].ToString());
+                        var Colab = new Colaborador
+                        {
+                            SeqColaborador = Int32.Parse(Colaborador["seqcolaborador"].ToString()),
+                            RazaoSocial = Colaborador["razaosocial"].ToString(),
+                            ImgLogo = (string)Colaborador["imglogo"]
+                        };
+
+                        Colaboradores.Add(Colab);
                     }
+                    DBModel.Conexao.Close();
 
                     return Colaboradores;
                 }
