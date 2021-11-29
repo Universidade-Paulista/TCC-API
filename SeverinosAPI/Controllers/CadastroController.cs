@@ -17,6 +17,7 @@ namespace SeverinosAPI.Controllers
         [HttpGet("{idPessoa}")]
         public ActionResult<string> GetCadastro(int idPessoa)
         {
+
             try
             {            
                 var CadastroPessoa = new Cadastro();            
@@ -225,7 +226,7 @@ namespace SeverinosAPI.Controllers
                 {
                     SeqColaborador = Int32.Parse(Colaborador["seqcolaborador"].ToString());
                 }            
-
+                DBModel.Conexao.Close();
                 var CadastroPessoa = new Cadastro
                 {
                     //tb_pessoa
@@ -249,7 +250,7 @@ namespace SeverinosAPI.Controllers
                     LinkWhatsapp = JsonObj["linkwhatsapp"],
                     NroTelComercial = JsonObj["nrotelcomercial"]
                 };
-                DBModel.Conexao.Close();
+                
 
                 string UpdatePessoa = 
                     $"update tb_pessoa set nome = '{CadastroPessoa.Nome}', " +
@@ -272,6 +273,18 @@ namespace SeverinosAPI.Controllers
                     $"nrotelcomercial = '{CadastroPessoa.NroTelComercial}' " +
                     $"where seqpessoa = {CadastroPessoa.SeqPessoa}";
                 DBModel.RunSqlNonQuery(UpdateColaborador);
+                DBModel.Conexao.Close();
+
+                var Profissao = DBModel.GetReader($"select seqprofissao from tb_profissao tp where tp.nomeprofissao = '{JsonObj["NomeProfissao"]}'");
+                Profissao.Read();
+
+                string UpdateProfissaoColaborador =
+                    " update tb_profissaocolaborador " +
+                   $"    set seqprofissao = {Int32.Parse(Profissao["seqprofissao"].ToString())}" +
+                    "  where seqcolaborador in(select tc.seqcolaborador from tb_colaborador tc " +
+                   $"                             where tc.seqpessoa = {CadastroPessoa.SeqPessoa}";
+                DBModel.Conexao.Close();
+                DBModel.RunSqlNonQuery(UpdateProfissaoColaborador);
                 DBModel.Conexao.Close();
 
                 return Alterou;
