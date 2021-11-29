@@ -31,7 +31,8 @@ namespace SeverinosAPI.Controllers
                 CadastroPessoa.Telefone = Pessoa["Telefone"].ToString();
                 CadastroPessoa.IndSeverino = Boolean.Parse(Pessoa["IndSeverino"].ToString());
                 CadastroPessoa.Senha = Pessoa["Senha"].ToString();
-                
+                DBModel.Conexao.Close();
+
                 var Endereco = DBModel.GetReader($"select * from tb_endereco te where te.seqpessoa = {idPessoa}");
                 Endereco.Read();
 
@@ -41,7 +42,8 @@ namespace SeverinosAPI.Controllers
                 CadastroPessoa.Bairro = Endereco["Bairro"].ToString();
                 CadastroPessoa.Cidade = Endereco["Cidade"].ToString();
                 CadastroPessoa.Cep = Endereco["Cep"].ToString();
-                CadastroPessoa.Estado = Endereco["Estado"].ToString();           
+                CadastroPessoa.Estado = Endereco["Estado"].ToString();
+                DBModel.Conexao.Close();
 
                 if (CadastroPessoa.IndSeverino == true)
                 {               
@@ -56,15 +58,7 @@ namespace SeverinosAPI.Controllers
                     CadastroPessoa.NroTelComercial = Colaborador["NroTelComercial"].ToString();
                     CadastroPessoa.Instagram = Colaborador["Instagram"].ToString();
                     CadastroPessoa.Facebook = Colaborador["Facebook"].ToString();
-
-                    float NotaAvaliacao = 0;
-
-                    if (Colaborador["NotaAvaliacao"].ToString() != "")
-                    {
-                        NotaAvaliacao = float.Parse(Colaborador["NotaAvaliacao"].ToString());
-                    }
-
-                    CadastroPessoa.NotaAvaliacao = NotaAvaliacao;
+                    DBModel.Conexao.Close();
 
                     var Profissao = DBModel.GetReader(
                         $"select tp.nomeprofissao from tb_profissaocolaborador tpc " +

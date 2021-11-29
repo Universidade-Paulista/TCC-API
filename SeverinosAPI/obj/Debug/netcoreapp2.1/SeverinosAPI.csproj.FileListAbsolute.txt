@@ -32,3 +32,4 @@ D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.RazorTargetAssembly
 D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.dll
 D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.pdb
 D:\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.genruntimeconfig.cache
+D:\MeusProjetos\TCC-API\SeverinosAPI\obj\Debug\netcoreapp2.1\SeverinosAPI.csproj.AssemblyReference.cache

@@ -17,19 +17,30 @@ namespace SeverinosAPI.Controllers
         {
             try
             {
+                var Login = new Login();
+
                 string SelectPessoa =
-                    $"select indseverino from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}'";
+                    $"select indseverino, seqPessoa from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}'";
+
 
                 var pessoa = DBModel.GetReader(SelectPessoa);
                 pessoa.Read();
 
+                Login.IndSeverino = Convert.ToBoolean(pessoa["indseverino"]) ? "S" : "N";
+                Login.SeqPessoa = Convert.ToInt32(pessoa["seqPEssoa"]);
+
                 if (pessoa.HasRows)
                 {
-                    return Convert.ToBoolean(pessoa["indseverino"]) ? "S" : "N";
+                   // return Convert.ToBoolean(pessoa["indseverino"]) ? "S" : "N";
+
+                    return System.Text.Json.JsonSerializer.Serialize(Login);
                 }
                 else
                 {
-                    return "E";
+                    // return "E";
+                    Login.IndSeverino = "E";
+                    Login.SeqPessoa = 0;
+                    return System.Text.Json.JsonSerializer.Serialize(Login);
                 }
             }
             finally
