@@ -17,7 +17,6 @@ namespace SeverinosAPI.Controllers
         [HttpGet("{idPessoa}")]
         public ActionResult<string> GetCadastro(int idPessoa)
         {
-
             try
             {            
                 var CadastroPessoa = new Cadastro();            
@@ -71,8 +70,7 @@ namespace SeverinosAPI.Controllers
 
                     if (Profissao.HasRows) { 
                         CadastroPessoa.NomeProfissao = Profissao["NomeProfissao"].ToString(); 
-                    }
-                   
+                    }                   
                 }
 
                 return System.Text.Json.JsonSerializer.Serialize(CadastroPessoa);
@@ -311,12 +309,5 @@ namespace SeverinosAPI.Controllers
                 DBModel.Conexao.Close();
             }
         }        
-
-        // DELETE Cadastro
-        [HttpDelete("{idPessoa}")]
-        public ActionResult<string> DeletaCadastro(int idPessoa)
-        {
-            return "S";
-        }
     }    
 }

@@ -22,7 +22,6 @@ namespace SeverinosAPI.Controllers
                 string SelectPessoa =
                     $"select indseverino, seqPessoa from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}'";
 
-
                 var pessoa = DBModel.GetReader(SelectPessoa);
                 pessoa.Read();
 
@@ -31,13 +30,10 @@ namespace SeverinosAPI.Controllers
 
                 if (pessoa.HasRows)
                 {
-                   // return Convert.ToBoolean(pessoa["indseverino"]) ? "S" : "N";
-
                     return System.Text.Json.JsonSerializer.Serialize(Login);
                 }
                 else
                 {
-                    // return "E";
                     Login.IndSeverino = "E";
                     Login.SeqPessoa = 0;
                     return System.Text.Json.JsonSerializer.Serialize(Login);

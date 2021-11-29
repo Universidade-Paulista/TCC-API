@@ -14,7 +14,7 @@ namespace SeverinosAPI.Controllers
     {
         // GET api/values
         [HttpGet]
-        [HttpGet("{idcolabnomeprof}/{Metodo}")] // nome prof , vazio
+        [HttpGet("{idcolabnomeprof}/{Metodo}")]
         public ActionResult<dynamic> Get(string idcolabnomeprof, string Metodo)
         {
             if (Metodo.ToUpper() == "whatsapp".ToUpper()) {
@@ -76,7 +76,7 @@ namespace SeverinosAPI.Controllers
             }
         }
 
-        public string GetLinkWhatsappSeverino(string idcolabnomeprof) //sepessoa , whatsapp
+        public string GetLinkWhatsappSeverino(string idcolabnomeprof)
         {
             try
             {
