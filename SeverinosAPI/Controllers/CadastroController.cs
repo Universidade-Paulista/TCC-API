@@ -293,21 +293,5 @@ namespace SeverinosAPI.Controllers
             }
         }
 
-        // PUT Cadastro
-        [HttpPut("{idPessoa}/{imagem}")]
-        public ActionResult<Boolean> AlteraImagem(int idPessoa, string imagem)
-        {
-            try
-            { 
-                string UpdateSenha =
-                    $"update tb_pessoa set igmLogo = '{imagem}' where SeqPessoa = {idPessoa}";
-
-                return DBModel.RunSqlNonQuery(UpdateSenha) > 0;
-            }
-            finally
-            {
-                DBModel.Conexao.Close();
-            }
-        }        
     }    
 }
