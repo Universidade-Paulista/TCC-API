@@ -18,7 +18,7 @@ namespace SeverinosAPI.Controllers
         {
             try
             { 
-                var Profissoes = DBModel.GetReader($"select * from tb_profissao");
+                var Profissoes = DBModel.GetReader($"select NomeProfissao from tb_profissao");
                 Profissoes.Read();
 
                 List<string> Lista = new List<string>();            

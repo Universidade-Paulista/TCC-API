@@ -278,9 +278,9 @@ namespace SeverinosAPI.Controllers
 
                 string UpdateProfissaoColaborador =
                     " update tb_profissaocolaborador " +
-                   $"    set seqprofissao = {Int32.Parse(Profissao["seqprofissao"].ToString())}" +
-                    "  where seqcolaborador in(select tc.seqcolaborador from tb_colaborador tc " +
-                   $"                             where tc.seqpessoa = {CadastroPessoa.SeqPessoa}";
+                   $"    set seqprofissao = {Int32.Parse(Profissao["seqprofissao"].ToString())} " +
+                    "  where seqcolaborador in(select seqcolaborador from tb_colaborador        " +
+                   $"                           where seqpessoa = {CadastroPessoa.SeqPessoa} )  ";
                 DBModel.Conexao.Close();
                 DBModel.RunSqlNonQuery(UpdateProfissaoColaborador);
                 DBModel.Conexao.Close();
