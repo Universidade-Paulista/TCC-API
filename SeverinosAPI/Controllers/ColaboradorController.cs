@@ -91,7 +91,7 @@ namespace SeverinosAPI.Controllers
         {
             try
             {
-                var Severino = DBModel.GetReader($"select linkwhatsapp from tb_colaborador where seqpessoa = {idcolabnomeprof}");
+                var Severino = DBModel.GetReader($"select linkwhatsapp from tb_colaborador where seqcolaborador = {idcolabnomeprof}");
                 Severino.Read();
 
                 if (Severino.HasRows)
