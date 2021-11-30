@@ -249,7 +249,6 @@ namespace SeverinosAPI.Controllers
                     NroTelComercial = JsonObj["nrotelcomercial"]
                 };
                 
-
                 string UpdatePessoa = 
                     $"update tb_pessoa set nome = '{CadastroPessoa.Nome}', " +
                     $"nrocpf = '{CadastroPessoa.NroCPF}', "+
@@ -273,17 +272,19 @@ namespace SeverinosAPI.Controllers
                 DBModel.RunSqlNonQuery(UpdateColaborador);
                 DBModel.Conexao.Close();
 
-                var Profissao = DBModel.GetReader($"select seqprofissao from tb_profissao tp where tp.nomeprofissao = '{JsonObj["NomeProfissao"]}'");
-                Profissao.Read();
+                if (JsonObj["NomeProfissao"] != "") {
+                    var Profissao = DBModel.GetReader($"select seqprofissao from tb_profissao tp where tp.nomeprofissao = '{JsonObj["NomeProfissao"]}'");
+                    Profissao.Read();
 
-                string UpdateProfissaoColaborador =
-                    " update tb_profissaocolaborador " +
-                   $"    set seqprofissao = {Int32.Parse(Profissao["seqprofissao"].ToString())} " +
-                    "  where seqcolaborador in(select seqcolaborador from tb_colaborador        " +
-                   $"                           where seqpessoa = {CadastroPessoa.SeqPessoa} )  ";
-                DBModel.Conexao.Close();
-                DBModel.RunSqlNonQuery(UpdateProfissaoColaborador);
-                DBModel.Conexao.Close();
+                    string UpdateProfissaoColaborador =
+                        " update tb_profissaocolaborador " +
+                       $"    set seqprofissao = {Int32.Parse(Profissao["seqprofissao"].ToString())} " +
+                        "  where seqcolaborador in(select seqcolaborador from tb_colaborador        " +
+                       $"                           where seqpessoa = {CadastroPessoa.SeqPessoa} )  ";
+                    DBModel.Conexao.Close();
+                    DBModel.RunSqlNonQuery(UpdateProfissaoColaborador);
+                    DBModel.Conexao.Close();
+                }
 
                 return Alterou;
             }

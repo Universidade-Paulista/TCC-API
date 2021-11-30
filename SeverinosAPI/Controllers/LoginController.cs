@@ -23,19 +23,20 @@ namespace SeverinosAPI.Controllers
                     $"select indseverino, seqPessoa from tb_pessoa where upper(email) = '{email.ToUpper()}' and upper(senha) = '{senha.ToUpper()}'";
 
                 var pessoa = DBModel.GetReader(SelectPessoa);
-                pessoa.Read();
-
-                Login.IndSeverino = Convert.ToBoolean(pessoa["indseverino"]) ? "S" : "N";
-                Login.SeqPessoa = Convert.ToInt32(pessoa["seqPEssoa"]);
+                pessoa.Read();                
 
                 if (pessoa.HasRows)
                 {
+                    Login.IndSeverino = Convert.ToBoolean(pessoa["indseverino"]) ? "S" : "N";
+                    Login.SeqPessoa = Convert.ToInt32(pessoa["seqPessoa"]);
+
                     return System.Text.Json.JsonSerializer.Serialize(Login);
                 }
                 else
                 {
                     Login.IndSeverino = "E";
                     Login.SeqPessoa = 0;
+
                     return System.Text.Json.JsonSerializer.Serialize(Login);
                 }
             }
